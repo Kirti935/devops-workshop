@@ -1,0 +1,24 @@
+---
+- hosts: jenkins-slave
+  become: true  # become a root user to install packages
+  tasks:
+  - name: update ubuntu repo and cache
+    apt: # module used for package management
+      update_cache: yes  # update the apt cache
+      cache_valid_time: 3600  # cache valid for 1 hour
+
+  - name: install java
+    apt: #module used for package installation
+      name: openjdk-17-jre
+      state: present
+
+  - name: download maven package
+    get_url:
+      url: https://archive.apache.org/dist/maven/maven-3/3.9.2/binaries/apache-maven-3.9.2-bin.tar.gz
+      dest: /opt
+
+  - name: extract maven package
+    unarchive:  # module used to extract files
+      src: /opt/apache-maven-3.9.2-bin.tar.gz
+      dest: /opt/
+      remote_src: yes  # the source file is already on the remote machine
