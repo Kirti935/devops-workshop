@@ -40,8 +40,9 @@
       path: /var/run/docker.sock
       state: file
       mode: '0777'  # set permissions to allow all users to read, write, and execute
-  
+
   - name: start docker on boot time
     service:
       name: docker
-      enabled: true  # ensure docker starts on boot
+      enabled: yes
+ 
