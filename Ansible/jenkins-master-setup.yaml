@@ -1,33 +1,31 @@
----
-- hosts: jenkins_master
+- hosts: jenkins-master
   become: true  #become a root user to install packages
   tasks:
     - name: add jenkins key
       apt_key:  #module used for key
         url:  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
-      state: present 
+        state: present
 
     - name: add jenkins repository
       apt_repository:  #module used for repository
         repo: deb http://pkg.jenkins.io/debian-stable binary/
-        state: present  
+        state: present
 
-    - name: install java
+    - name: install java-
       apt: #module used for package installation
-        name: openjdk-11-jre  
-        state: present  
+        name: openjdk-17-jre
+        state: present
 
     - name: install jenkins
       apt:  #module used for package installation
-        name: jenkins  
-        state: present  
+        name: jenkins
+        state: present
 
-    - name: start jenkins service
-      service:  #module used for service management 
-        name: jenkins  
-        state: started  
-        
-    - name: enable jenkins to start at boot time
+    - name: start and enable jenkins service
       service:  #module used for service management
-        name: jenkins  
-        enabled: yes  
+        name: jenkins
+        state: started
+        enabled: yes  #enable the service to start on boot
+
+        
+  
