@@ -16,7 +16,7 @@ resource "aws_instance" "demo-server" {
 
 resource "aws_security_group" "demo-sg" {
     name        = "demo-sg"
-    description = "SSH acecess to demo server"
+    description = "SSH access to demo server"
     vpc_id     = aws_vpc.demo-vpc.id
 
     ingress {
@@ -99,7 +99,7 @@ resource "aws_route_table_association" "demo-public-rt-assoc-02" {
     subnet_id      = aws_subnet.demo-public-subnet-02.id
     route_table_id = aws_route_table.demo-public-rt.id
 }
-
+/*
 module "sg_eks" {
     source = "../sg_eks"
     vpc_id     = aws_vpc.demo-vpc.id
@@ -109,5 +109,6 @@ module "eks" {
     source = "../eks"
     vpc_id     = aws_vpc.demo-vpc.id
     subnet_ids = [aws_subnet.demo-public-subnet-01.id,aws_subnet.demo-public-subnet-02.id]
-    sg_eks_ids = module.sgs.security_group_public
+    sg_ids = module.sg_eks.security_group_public
  }
+ */
