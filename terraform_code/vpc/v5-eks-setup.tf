@@ -99,7 +99,7 @@ resource "aws_route_table_association" "demo-public-rt-assoc-02" {
     subnet_id      = aws_subnet.demo-public-subnet-02.id
     route_table_id = aws_route_table.demo-public-rt.id
 }
-/*
+
 module "sg_eks" {
     source = "../sg_eks"
     vpc_id     = aws_vpc.demo-vpc.id
@@ -111,4 +111,4 @@ module "eks" {
     subnet_ids = [aws_subnet.demo-public-subnet-01.id,aws_subnet.demo-public-subnet-02.id]
     sg_ids = module.sg_eks.security_group_public
  }
- */
+ 
